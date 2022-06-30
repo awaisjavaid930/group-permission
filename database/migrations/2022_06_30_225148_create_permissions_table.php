@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('permission');
+            $table->string('permission')->comment('permission name is basically route name');
             $table->timestamps();
         });
     }
