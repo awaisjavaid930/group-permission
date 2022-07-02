@@ -22,5 +22,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource('role', RoleController::class);
-Route::resource('permission',   PermissionController::class);
+Route::resources([
+    'role'      => RoleController::class,
+    'permission'=> PermissionController::class,
+]);
