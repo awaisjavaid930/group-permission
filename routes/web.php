@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, RoleController, PermissionController};
+use App\Http\Controllers\{HomeController, RoleController, PermissionController, UserController};
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +25,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resources([
     'role'      => RoleController::class,
     'permission'=> PermissionController::class,
+    'user'=> UserController::class,
 ]);
