@@ -4,26 +4,22 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="{{ route('user.create') }}" class="btn btn-success">Add User</a>
+            <a href="{{ route('role.create') }}" class="btn btn-success">Add User</a>
             <br /><br />
             <table class="border table table-striped table-light">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($users as $key => $user)
+                    @forelse($roles as $key => $role)
                         <tr>
-                            <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role->name ?? "Role Dose Not Exist" }}</td>
-                            <td> <a href="{{ route('user.edit' , [$user->id ]) }}">Edit</a> </td>
+                            <th scope="row">{{ $role->id }}</th>
+                            <td>{{ $role->name }}</td>
+                            <td> <a href="{{ route('role.edit' , [$role->id ]) }}">Edit</a> </td>
                         </tr>
                     @empty
                         <tr>

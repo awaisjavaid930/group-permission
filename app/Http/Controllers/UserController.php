@@ -15,7 +15,7 @@ class UserController extends Controller
         //     return $item->created_at->format('Y-m-d');
         // });
         if($request->wantsJson()){
-            $users = response()->json(['response' => 'success',  'users' => $users]); 
+            $users = response()->json(['response' => 'success',  'data' => $users]); 
         }
         return view('users.index' , compact('users'));
     }

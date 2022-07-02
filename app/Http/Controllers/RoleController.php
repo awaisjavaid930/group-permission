@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -11,9 +12,14 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $roles = Role::get();
+        if($request->wantsJson()){
+            $users = response()->json(['response' => 'success',  'data' => $roles]); 
+        }
+        return view('roles.index' , compact('roles'));
     }
 
     /**
@@ -23,7 +29,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -35,6 +41,12 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
+        Role::create($request->all());
+        if($request->wantsJson()){
+            $users = response()->json(['response' => 'success']); 
+        }
+        return view('roles.index' , compact('roles'));
+
     }
 
     /**
@@ -57,6 +69,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         //
+        return view('roles.edit');
     }
 
     /**
@@ -66,9 +79,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Role $role)
     {
-        //
+        $role->update(['name' => $request['name']]);
+        if($request->wantsJson()){
+            $users = response()->json(['response' => 'success']); 
+        }
+        return view('roles.index' , compact('roles'));
     }
 
     /**
