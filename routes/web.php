@@ -19,11 +19,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 Route::resources([
     'role'      => RoleController::class,
     'permission'=> PermissionController::class,
-    'user'=> UserController::class,
+    'user'      => UserController::class,
 ]);
