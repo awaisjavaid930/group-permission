@@ -64,6 +64,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+        dd($token);
+
         return User::create([
             'name'      => $data['name'],
             'email'     => $data['email'],

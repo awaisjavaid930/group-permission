@@ -14,7 +14,6 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        //
         $permissions = Permission::get();
         if($request->wantsJson()){
             $users = response()->json(['response' => 'success',  'data' => $permissions]); 
