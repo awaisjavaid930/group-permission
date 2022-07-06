@@ -15,10 +15,10 @@ class PermissionController extends Controller
     public function index(Request $request)
     {
         $permissions = Permission::get();
-        if($request->wantsJson()){
-            $users = response()->json(['response' => 'success',  'data' => $permissions]); 
-        }
-        return view('permissions.index' , compact('permissions'));
+        // if($request->wantsJson()){
+        return response()->json(['response' => 'success',  'data' => $permissions]); 
+        // }
+        // return view('permissions.index' , compact('permissions'));
     }
 
     /**
@@ -28,8 +28,8 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
-        return view('permissions.create');
+        return  response()->json(['response' => 'success']); 
+        // return view('permissions.create');
     }
 
     /**
@@ -42,10 +42,10 @@ class PermissionController extends Controller
     {
         //
         Permission::create($request->all());
-        if($request->wantsJson()){
-            $users = response()->json(['response' => 'success']); 
-        }
-        return view('permissions.index');
+        // if($request->wantsJson()){
+        return response()->json(['response' => 'success']); 
+        // }
+        // return view('permissions.index');
 
     }
 
@@ -68,8 +68,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('permissions.edit');
+        return  response()->json(['response' => 'success']); 
+        // return view('permissions.edit');
     }
 
     /**
@@ -82,10 +82,10 @@ class PermissionController extends Controller
     public function update(Request $request,Permission $permission)
     {
         $permission->update(['name' => $request['permission']]);
-        if($request->wantsJson()){
-            $users = response()->json(['response' => 'success']); 
-        }
-        return view('permissions.index');
+        // if($request->wantsJson()){
+        return  response()->json(['response' => 'success']); 
+        // }
+        // return view('permissions.index');
     }
 
     /**

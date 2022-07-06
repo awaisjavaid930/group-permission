@@ -16,10 +16,8 @@ class RoleController extends Controller
     {
         //
         $roles = Role::get();
-        if($request->wantsJson()){
-            $users = response()->json(['response' => 'success',  'data' => $roles]); 
-        }
-        return view('roles.index' , compact('roles'));
+        return  response()->json(['response' => 'success',  'data' => $roles]);
+        // return view('roles.index' , compact('roles'));
     }
 
     /**
@@ -29,7 +27,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        return  response()->json(['response' => 'success']); 
+        // return view('roles.create');
     }
 
     /**
@@ -42,10 +41,10 @@ class RoleController extends Controller
     {
         //
         Role::create($request->all());
-        if($request->wantsJson()){
-            $users = response()->json(['response' => 'success']); 
-        }
-        return view('roles.index' , compact('roles'));
+        // if($request->wantsJson()){
+        return response()->json(['response' => 'success']); 
+        // }
+        // return view('roles.index' , compact('roles'));
 
     }
 
@@ -68,8 +67,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('roles.edit');
+        return  response()->json(['response' => 'success']); 
+        // return view('roles.edit');
     }
 
     /**
@@ -82,10 +81,10 @@ class RoleController extends Controller
     public function update(Request $request,Role $role)
     {
         $role->update(['name' => $request['name']]);
-        if($request->wantsJson()){
-            $users = response()->json(['response' => 'success']); 
-        }
-        return view('roles.index' , compact('roles'));
+        // if($request->wantsJson()){
+        return  response()->json(['response' => 'success']); 
+        // }
+        // return view('roles.index' , compact('roles'));
     }
 
     /**

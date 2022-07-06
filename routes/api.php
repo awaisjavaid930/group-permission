@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, RoleController, PermissionController, UserController};
+use App\Http\Controllers\{HomeController, RoleController, PermissionController, UserController,AuthController};
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +19,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource([
-//     'role'      => RoleController::class,
-//     'permission'=> PermissionController::class,
-//     'user'      => UserController::class,
-// ]);
 
+Route::post('/auth/register', [AuthController::class, 'register']);
+Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::apiResources([
+        'role'      => RoleController::class,
+        'permission'=> PermissionController::class,
+        'user'      => UserController::class,
+    ]);
+
+    Route::get('/me', function(Request $request) {
+        return auth()->user();
+    });
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+});
 
 
