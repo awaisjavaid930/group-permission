@@ -1,22 +1,30 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="container text-start">
       <div class="card">
-        <div class="card-header">
-          Login
-        </div>
-        <div class="card-body ">
-          <form>
+        <div class="card-header">Login</div>
+        <HelloWorld />
+        <div class="card-body">
+          <form @submit="login">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input
+                type="email"
+                v-model="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+              />
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input
+                type="password"
+                v-model="password"
+                class="form-control"
+                id="exampleInputPassword1"
+              />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -27,13 +35,26 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
+import axios from "axios";
+import HelloWorld from "@/components/HelloWorld.vue";
 export default {
-  name: 'LoginView',
-  components : {
-    // HelloWorld
-  }
-}
+  name: "LoginView",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    async login(e) {
+      e.preventDefault();
+      const data = { email: this.email, password: this.password };
+      await axios
+        .post("http://127.0.0.1:8000/api/auth/login", data)
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
+    }
+  },
+  components: { HelloWorld }
+};
 </script>
