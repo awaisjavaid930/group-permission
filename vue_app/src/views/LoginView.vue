@@ -37,6 +37,7 @@
 <script>
 import axios from "axios";
 import HelloWorld from "@/components/HelloWorld.vue";
+import { useLoggedInUserStore } from "@/store/loggedInUser";
 export default {
   name: "LoginView",
   data() {
@@ -48,11 +49,24 @@ export default {
   methods: {
     async login(e) {
       e.preventDefault();
-      const data = { email: this.email, password: this.password };
-      await axios
-        .post("http://127.0.0.1:8000/api/auth/login", data)
-        .then(response => console.log(response))
-        .catch(err => console.log(err));
+      // const data = { email: this.email, password: this.password };
+      const loggedInUser = useLoggedInUserStore();
+      await loggedInUser.login(this.email, this.password).then(res => {
+        if (res == 200) {
+          this.$router.push("/dashboard");
+        }
+      });
+      // console.log(response);
+      // await axios
+      //   .post("http://127.0.0.1:8000/api/auth/login", data)
+      //   .then(response => {
+      //     localStorage.setItem(
+      //       "token",
+      //       JSON.stringify(response.data.data.token)
+      //     );
+      //     localStorage.setItem("user", JSON.stringify(response.data.data.user));
+      //   })
+      //   .catch(err => console.log(err));
     }
   },
   components: { HelloWorld }
