@@ -56,17 +56,6 @@ export default {
           this.$router.push("/dashboard");
         }
       });
-      // console.log(response);
-      // await axios
-      //   .post("http://127.0.0.1:8000/api/auth/login", data)
-      //   .then(response => {
-      //     localStorage.setItem(
-      //       "token",
-      //       JSON.stringify(response.data.data.token)
-      //     );
-      //     localStorage.setItem("user", JSON.stringify(response.data.data.user));
-      //   })
-      //   .catch(err => console.log(err));
     }
   },
   components: { HelloWorld }

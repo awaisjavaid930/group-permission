@@ -5,8 +5,8 @@ export const useLoggedInUserStore = defineStore({
   // id is required so that Pinia can connect the store to the devtools
   id: 'loggedInUser',
   state: () =>({
-        token: localStorage.getItem('token'),
-        user : localStorage.getItem('user')
+        token: localStorage.getItem('token') ?? null,
+        user : localStorage.getItem('user') ?? null
     }),
     getters: {},
     actions:{
@@ -18,7 +18,6 @@ export const useLoggedInUserStore = defineStore({
           localStorage.setItem('user',res.data.data.user)
           this.token = res.data.data.token ;
           this.user = res.data.data.user ;
-          // console.log(res.status)
           return Promise.resolve(res.status);
         }).catch(err =>{
           console.log(err)
@@ -27,8 +26,10 @@ export const useLoggedInUserStore = defineStore({
       logout()
       {
             this.user = null;
+            this.token = null;
             localStorage.removeItem('user');
-            // router.push('/login');
+            localStorage.removeItem('token');
+            router.push('/');
       }
     }
 });
