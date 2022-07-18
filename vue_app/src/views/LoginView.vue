@@ -49,7 +49,6 @@ export default {
   methods: {
     async login(e) {
       e.preventDefault();
-      // const data = { email: this.email, password: this.password };
       const loggedInUser = useLoggedInUserStore();
       await loggedInUser.login(this.email, this.password).then(res => {
         if (res == 200) {
