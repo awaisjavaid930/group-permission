@@ -15,10 +15,8 @@ class PermissionController extends Controller
     public function index(Request $request)
     {
         $permissions = Permission::get();
-        // if($request->wantsJson()){
         return response()->json(['response' => 'success',  'data' => $permissions]); 
-        // }
-        // return view('permissions.index' , compact('permissions'));
+
     }
 
     /**
@@ -55,9 +53,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Permission $permission)
     {
-        //
+    
+        return  response()->json(['response' => 'success' , 'data' => $permission ]);
     }
 
     /**
@@ -66,10 +65,9 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
-        return  response()->json(['response' => 'success']); 
-        // return view('permissions.edit');
+        return  response()->json(['response' => 'success' , 'data' => $permission ]);
     }
 
     /**

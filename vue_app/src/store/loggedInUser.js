@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { defineStore } from 'pinia'
-import api from '../boot/axios';
 
 export const useLoggedInUserStore = defineStore({
   // id is required so that Pinia can connect the store to the devtools
@@ -33,20 +32,24 @@ export const useLoggedInUserStore = defineStore({
           localStorage.removeItem('user');
           localStorage.removeItem('token');
       },
-      async data_request()
+      async data_request(data)
       {
-        return await api.request({
-          method : data.method,
-          url : url+ 'api/' + data.url,
+        let token = localStorage.getItem('token'); 
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        return await axios.request({
+          method : 'GET',
+          url : 'http://127.0.0.1:8000/api/' + data.url , config ,
           responseType  : data.responseType ? data.responseType : 'json' 
         })
-          .then(res => {
-          this.pageData = data  
-          return Promise.resolve(res)
-          })
-          .catch(err => {
-            console.log(err)
-          })
+        .then(res => {
+          let pageData = res.data.data  
+          return Promise.resolve(pageData)
+        })
+        .catch(err => {
+          console.log(err)
+        })
       }
     }
 });

@@ -43,18 +43,25 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      err: ""
     };
   },
   methods: {
     async login(e) {
       e.preventDefault();
       const loggedInUser = useLoggedInUserStore();
-      await loggedInUser.login(this.email, this.password).then(res => {
-        if (res == 200) {
-          this.$router.push("/dashboard");
-        }
-      });
+      await loggedInUser
+        .login(this.email, this.password)
+        .then(res => {
+          if (res == 200) {
+            this.$router.push("/dashboard");
+          }
+        })
+        .catch(err => {
+          console.log("dfd");
+          this.err = err.message;
+        });
     }
   },
   components: { HelloWorld }

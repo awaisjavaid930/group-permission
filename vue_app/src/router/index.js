@@ -13,9 +13,14 @@ const routes = [
     component: () => import('../views/RegisterView.vue')
   },
   {
-    path: '/dashboard',
+    path: '/dashboard', // all permissions
     name: 'dashboard',
     component: () => import('../views/DashboardView.vue')
+  },
+  {
+    path: '/permission/:id', // all permissions
+    name: 'permission:id',
+    component: () => import('../views/EditPermissionView.vue')
   },
 ]
 
