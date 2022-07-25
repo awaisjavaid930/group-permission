@@ -22,6 +22,16 @@ const routes = [
     name: 'permission:id',
     component: () => import('../views/EditPermissionView.vue')
   },
+  {
+    path: '/roles', // all permissions
+    name: 'roles',
+    component: () => import('../views/RolesView.vue')
+  },
+  {
+    path: '/role/:id', // all permissions
+    name: 'role',
+    component: () => import('../views/EditRoleView.vue')
+  },
 ]
 
 const router = createRouter({

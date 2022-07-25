@@ -2,6 +2,7 @@
   <div class="container">
     <div>
       <span class="fs-2 me-2">Permissions</span>
+      <button class="btn btn-primary" @click="changeRoute('roles')">Roles</button>
       <button class="btn btn-primary" @click="logout">Logout</button>
     </div>
     <table class="table border table-bordered table-hover">

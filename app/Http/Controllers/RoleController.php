@@ -14,10 +14,8 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        //
         $roles = Role::get();
         return  response()->json(['response' => 'success',  'data' => $roles]);
-        // return view('roles.index' , compact('roles'));
     }
 
     /**
@@ -54,9 +52,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        //
+        return response()->json(['response' => 'success' , 'data' => $role]);
     }
 
     /**
@@ -65,10 +63,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        return  response()->json(['response' => 'success']); 
-        // return view('roles.edit');
+        return response()->json(['response' => 'success' , 'data' => $role]);
     }
 
     /**
