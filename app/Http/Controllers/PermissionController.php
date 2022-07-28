@@ -27,7 +27,6 @@ class PermissionController extends Controller
     public function create()
     {
         return  response()->json(['response' => 'success']); 
-        // return view('permissions.create');
     }
 
     /**
@@ -38,12 +37,8 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
         Permission::create($request->all());
-        // if($request->wantsJson()){
-        return response()->json(['response' => 'success']); 
-        // }
-        // return view('permissions.index');
+        return response()->json(['response' => 'success' ]); 
 
     }
 

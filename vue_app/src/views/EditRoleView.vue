@@ -11,7 +11,7 @@ export default {
   methods: {
     getEditRole() {
       let userLoggedStore = useLoggedInUserStore();
-      let url = { url: "role/" + this.$route.params.id };
+      let url = { url: "role/" + this.$route.params.id , method : 'GET'};
       userLoggedStore
         .data_request(url)
         .then(res => {

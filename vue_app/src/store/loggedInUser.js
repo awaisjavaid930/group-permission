@@ -39,12 +39,17 @@ export const useLoggedInUserStore = defineStore({
             headers: { Authorization: `Bearer ${token}` }
         };
         return await axios.request({
-          method : 'GET',
+          method : data.method,
           url : 'http://127.0.0.1:8000/api/' + data.url , config ,
+          data: data.data ? data.data : '',
           responseType  : data.responseType ? data.responseType : 'json' 
         })
         .then(res => {
-          let pageData = res.data.data  
+          if (data.method == 'POST') {
+            var pageData =  res.data.response  
+          } else {
+            var pageData = res.data.data  
+          }
           return Promise.resolve(pageData)
         })
         .catch(err => {

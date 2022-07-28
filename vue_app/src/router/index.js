@@ -18,17 +18,22 @@ const routes = [
     component: () => import('../views/DashboardView.vue')
   },
   {
-    path: '/permission/:id', // all permissions
+    path: '/permission/:id', // specfic permissions
     name: 'permission:id',
     component: () => import('../views/EditPermissionView.vue')
   },
   {
-    path: '/roles', // all permissions
+    path: '/permission/create', // add permissions
+    name: 'AddNewPermission',
+    component: () => import('../views/AddPermissionView.vue')
+  },
+  {
+    path: '/roles', // all role
     name: 'roles',
     component: () => import('../views/RolesView.vue')
   },
   {
-    path: '/role/:id', // all permissions
+    path: '/role/:id', // all specfic role
     name: 'role',
     component: () => import('../views/EditRoleView.vue')
   },

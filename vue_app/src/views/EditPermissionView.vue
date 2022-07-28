@@ -21,7 +21,7 @@ export default {
   methods: {
     getData() {
       let loggedInStore = useLoggedInUserStore();
-      let url = { url: "permission/" + this.$route.params.id };
+      let url = { url: "permission/" + this.$route.params.id , method : 'GET' };
       loggedInStore
         .data_request(url)
         .then(res => {

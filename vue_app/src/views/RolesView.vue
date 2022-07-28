@@ -35,7 +35,7 @@ export default {
   methods: {
     getRoles() {
       const userLoggedStore = useLoggedInUserStore();
-      let url = { url: "role" };
+      let url = { url: "role" , method : 'GET' };
       return userLoggedStore
         .data_request(url)
         .then(res => {
