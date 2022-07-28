@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <span>Role List</span>
+    <button class="btn btn-primary" @click="changeRoute('/role/create')">Add Roles</button>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>

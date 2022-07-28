@@ -37,6 +37,11 @@ const routes = [
     name: 'role',
     component: () => import('../views/EditRoleView.vue')
   },
+  {
+    path: '/role/create', // all role
+    name: 'roles/create',
+    component: () => import('../views/AddRoleView.vue')
+  },
 ]
 
 const router = createRouter({

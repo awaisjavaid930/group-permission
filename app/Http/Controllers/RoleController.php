@@ -37,12 +37,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
         Role::create($request->all());
-        // if($request->wantsJson()){
         return response()->json(['response' => 'success']); 
-        // }
-        // return view('roles.index' , compact('roles'));
 
     }
 
